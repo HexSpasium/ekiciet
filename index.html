@@ -64,6 +64,51 @@ a{color:inherit;text-decoration:none}.site{overflow:hidden;background:radial-gra
 .modal-delete{background:#301010;border:1px solid #a53b31}.modal-actions{display:flex;gap:10px}.modal-actions>*{flex:1}
 .form-error{min-height:16px;color:#ff9389;font-size:12px;margin:0}
 @media(max-width:620px){.header-right{gap:8px}.admin-login-btn{font-size:9px;padding:8px 9px}.admin-toolbar{font-size:10px}.admin-modal{padding:23px 18px}}
+
+/* DIGITAL LIGHT SYSTEM · animated reflections and illuminated frames */
+:root{--beam-red:#ff343b;--beam-amber:#ff8a55;--beam-cyan:#65dfff;--glass-line:rgba(255,255,255,.13)}
+body{background:#070910;position:relative}
+body:before,body:after{content:"";position:fixed;inset:-35%;pointer-events:none;z-index:-1}
+body:before{
+ background:
+  linear-gradient(112deg,transparent 35%,rgba(255,38,48,.0) 40%,rgba(255,48,58,.16) 43%,rgba(255,150,105,.08) 45%,transparent 49%),
+  linear-gradient(72deg,transparent 53%,rgba(75,207,255,.0) 57%,rgba(75,207,255,.11) 59%,transparent 63%),
+  radial-gradient(ellipse at 20% 18%,rgba(185,18,31,.23),transparent 32%),
+  radial-gradient(ellipse at 78% 70%,rgba(20,126,170,.15),transparent 34%);
+ filter:blur(17px);animation:ambientDrift 19s ease-in-out infinite alternate
+}
+body:after{
+ background:linear-gradient(118deg,transparent 0 44%,rgba(255,255,255,.035) 46%,rgba(255,80,73,.10) 47%,transparent 49% 100%);
+ transform:translateX(-32%) rotate(-7deg);animation:lightSweep 13s linear infinite
+}
+.site{position:relative;isolation:isolate;background:radial-gradient(ellipse at 50% 0%,rgba(78,16,28,.62),transparent 38%),linear-gradient(145deg,rgba(8,10,17,.94),rgba(13,7,10,.96) 55%,rgba(5,12,18,.96))}
+.header,.hero-wrap,.menu-section,.contact-section,.footer{position:relative}
+.header{backdrop-filter:blur(9px)}
+.hero,.contact-panel,.card,.admin-toolbar,.search,.tabs button,.admin-modal{
+ border-color:rgba(255,116,105,.35);
+ box-shadow:0 0 0 1px rgba(255,255,255,.025),0 14px 38px rgba(0,0,0,.48),0 0 24px rgba(230,38,48,.09)
+}
+.hero:before,.contact-panel:before,.card:before{
+ content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+ background:linear-gradient(115deg,rgba(255,255,255,.72),rgba(255,67,76,.72) 22%,transparent 43%,rgba(87,218,255,.42) 72%,rgba(255,255,255,.2));
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+ -webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;z-index:4
+}
+.hero:after,.contact-panel:after{filter:drop-shadow(0 0 16px rgba(255,45,55,.3))}
+.card{position:relative;isolation:isolate;background:linear-gradient(145deg,rgba(30,25,32,.94),rgba(8,13,20,.97));}
+.card:after{content:"";position:absolute;inset:-80% -45%;pointer-events:none;z-index:2;background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.0) 47%,rgba(255,255,255,.10) 49%,rgba(255,73,80,.10) 50%,transparent 54%);transform:translateX(-75%) rotate(8deg);transition:transform .8s ease}
+.card:hover:after{transform:translateX(75%) rotate(8deg)}
+.card:hover{box-shadow:0 18px 42px rgba(0,0,0,.55),0 0 26px rgba(255,51,62,.18),0 0 18px rgba(74,205,255,.09)}
+.food:after{border-color:rgba(255,255,255,.13);box-shadow:inset 0 0 22px rgba(255,255,255,.035)}
+.tabs button,.search{backdrop-filter:blur(12px);background:rgba(22,19,25,.78)}
+.tabs button.active{box-shadow:0 0 18px rgba(239,47,53,.35),inset 0 0 14px rgba(255,255,255,.10)}
+.brand-symbol,.contact-icon{box-shadow:0 0 0 3px rgba(111,23,19,.65),0 0 24px rgba(236,48,44,.34),0 0 12px rgba(91,215,255,.16)}
+.brand-plaque{box-shadow:0 0 0 2px #160909,0 5px 0 #bcb3ad,0 9px 18px #0003,0 0 25px rgba(255,55,55,.18)}
+.admin-modal{backdrop-filter:blur(20px);background:linear-gradient(145deg,rgba(36,20,19,.96),rgba(9,12,19,.97))}
+@keyframes ambientDrift{0%{transform:translate3d(-3%,1%,0) rotate(-4deg) scale(1)}100%{transform:translate3d(4%,-2%,0) rotate(5deg) scale(1.08)}}
+@keyframes lightSweep{0%{transform:translateX(-42%) rotate(-7deg)}100%{transform:translateX(42%) rotate(-7deg)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
 </style>
 </head>
 <body><div class="site">
