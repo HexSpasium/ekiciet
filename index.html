@@ -47,34 +47,124 @@ a{color:inherit;text-decoration:none}.site{overflow:hidden;background:radial-gra
 .contact-panel:after{content:"e";position:absolute;right:8%;top:-20%;font:italic 300 230px Georgia;color:#ffffff0b;line-height:1;z-index:-1}
 .contact-panel .owner{margin:0}.contact-panel .owner-rule{width:100%;margin:12px 0 0}.contact-panel .contact-row{margin:0;font-size:15px}
 @media(max-width:620px){.contact-section{padding:0 14px;margin-bottom:35px}.contact-panel{grid-template-columns:1fr;gap:17px;padding:24px 20px;border-radius:14px}.contact-panel .owner{font-size:27px}.contact-panel .contact-row{font-size:13px}.contact-panel:after{font-size:190px;top:15%;right:0}}
+
+.admin-login-btn,.admin-toolbar button,.product-edit-btn{font:700 11px 'DM Sans',sans-serif;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#d72b25,#81090c);border:1px solid #fa7164;border-radius:24px;padding:9px 13px;cursor:pointer}
+.admin-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 20px;padding:13px 16px;border:1px solid #8c3028;background:#210d0c;border-radius:12px;color:#f5b4aa;font-size:12px}
+.admin-toolbar[hidden],.modal-backdrop[hidden]{display:none!important}.admin-toolbar span{flex:1}.admin-toolbar button:last-child{background:#211717;border-color:#68423b}
+.product-edit-btn{position:absolute;z-index:3;right:12px;top:12px;border-radius:9px;padding:8px 11px}
+.food{position:relative;overflow:hidden}.food img{width:100%;height:100%;object-fit:cover;display:block}
+.modal-backdrop{position:fixed;inset:0;z-index:1000;background:#050303d9;backdrop-filter:blur(7px);display:grid;place-items:center;padding:18px;overflow:auto}
+.admin-modal{width:min(100%,440px);max-height:calc(100dvh - 36px);overflow:auto;position:relative;background:linear-gradient(145deg,#241413,#100b0b);border:1px solid #9a3a31;border-radius:18px;padding:27px;box-shadow:0 25px 90px #000b,0 0 0 3px #4c1512}
+.admin-modal h2{font:800 27px 'Playfair Display',Georgia,serif;margin:5px 0 7px}.modal-eyebrow{color:#f0786d;font-size:10px;letter-spacing:3px;font-weight:800;margin:0}.modal-help{color:#c5b2ac;font-size:13px;margin:0 0 20px}
+.modal-close{position:absolute;right:15px;top:12px;border:0;background:none;color:white;font-size:28px;cursor:pointer}
+.admin-modal form{display:grid;gap:12px}.admin-modal label{display:grid;gap:6px;color:#e7d7d1;font-size:12px;font-weight:700}
+.admin-modal input,.admin-modal select,.admin-modal textarea{width:100%;background:#100c0c;color:#fff;border:1px solid #5b3832;border-radius:9px;padding:11px 12px;font:14px 'DM Sans',sans-serif;outline:none}
+.admin-modal input:focus,.admin-modal select:focus,.admin-modal textarea:focus{border-color:#e64b40;box-shadow:0 0 0 3px #e64b4020}
+.modal-submit,.modal-delete{border:0;border-radius:9px;padding:12px 16px;color:#fff;background:linear-gradient(135deg,#e52c27,#990d10);font-weight:800;cursor:pointer}
+.modal-delete{background:#301010;border:1px solid #a53b31}.modal-actions{display:flex;gap:10px}.modal-actions>*{flex:1}
+.form-error{min-height:16px;color:#ff9389;font-size:12px;margin:0}
+@media(max-width:620px){.header-right{gap:8px}.admin-login-btn{font-size:9px;padding:8px 9px}.admin-toolbar{font-size:10px}.admin-modal{padding:23px 18px}}
 </style>
 </head>
 <body><div class="site">
-<header class="header"><a class="brand" href="#top"><span class="brand-symbol">e</span><span>EKİCİ ET MANGAL</span></a><div class="header-right"><a href="#menu">MENÜ</a><a class="header-cta" href="#contact">İLETİŞİM</a></div></header>
+<header class="header"><a class="brand" href="#top"><span class="brand-symbol">e</span><span>EKİCİ ET MANGAL</span></a><div class="header-right"><a href="#menu">MENÜ</a><a class="header-cta" href="#contact">İLETİŞİM</a><button class="admin-login-btn" id="adminLoginBtn" type="button">YÖNETİCİ</button></div></header>
 <div id="top" class="hero-wrap"><section class="hero">
 <div class="hero-left"><div class="brand-plaque"><span class="plaque-e">e</span> EKİCİ ET MANGAL</div><h1>LEZZETİN ADRESİ<br><span>USTALIĞIN</span> ATEŞİ</h1><p>Adaklık ve Kurbanlık Satışı ve Kesimi Yapılır.</p><div class="red-rule"></div></div>
 
 </section></div>
 <main id="menu" class="menu-section"><div class="section-title"><div class="eyebrow">LEZZETLERİMİZİ KEŞFEDİN</div><h2>DİJİTAL <em>MENÜ</em></h2><p>Ürünlerimizi kategorilere göre inceleyebilirsiniz.</p></div>
-<div class="toolbar"><div class="tabs" id="tabs"><button class="active" data-cat="all">Tümü</button><button data-cat="cooked">Pişmiş Ürünler</button><button data-cat="raw">Çiğ Ürünler</button><button data-cat="drinks">İçecekler</button><button data-cat="extras">Ekstralar</button></div><input class="search" id="search" placeholder="Menüde ara..." aria-label="Menüde ara"></div>
+<div class="admin-toolbar" id="adminToolbar" hidden><span>Yönetici modu açık · Değişiklikler anında yayınlanır</span><button id="addProductBtn" type="button">+ Ürün Ekle</button><button id="adminLogoutBtn" type="button">Çıkış</button></div><div class="toolbar"><div class="tabs" id="tabs"><button class="active" data-cat="all">Tümü</button><button data-cat="cooked">Pişmiş Ürünler</button><button data-cat="raw">Çiğ Ürünler</button><button data-cat="drinks">İçecekler</button><button data-cat="extras">Ekstralar</button></div><input class="search" id="search" placeholder="Menüde ara..." aria-label="Menüde ara"></div>
 <div class="grid" id="products"></div></main>
-<section class="contact-section" id="contact" aria-label="İletişim"><div class="contact-panel"><div><h2 class="owner">Serkan EKİCİ</h2><div class="owner-rule"></div></div>
+
+<div class="modal-backdrop" id="loginModal" hidden><section class="admin-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle"><button class="modal-close" type="button" data-close="loginModal">×</button><p class="modal-eyebrow">EKİCİ ET MANGAL</p><h2 id="loginTitle">Yönetici Girişi</h2><p class="modal-help">GabbyGrills yönetici hesabınla giriş yap.</p><form id="loginForm"><label>E-posta<input id="loginEmail" type="email" autocomplete="username" required></label><label>Şifre<input id="loginPassword" type="password" autocomplete="current-password" required></label><p class="form-error" id="loginError" role="alert"></p><button class="modal-submit" type="submit">Giriş Yap</button></form></section></div>
+<div class="modal-backdrop" id="productModal" hidden><section class="admin-modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle"><button class="modal-close" type="button" data-close="productModal">×</button><p class="modal-eyebrow">MENÜ YÖNETİMİ</p><h2 id="productModalTitle">Ürünü Düzenle</h2><form id="productForm"><input id="productId" type="hidden"><label>Ürün adı<input id="productName" required maxlength="90"></label><label>Kategori<select id="productCategory" required><option>Pişmiş Ürünler</option><option>Çiğ Ürünler</option><option>İçecekler</option><option>Ekstralar</option></select></label><label>Açıklama<textarea id="productDescription" rows="3" maxlength="300"></textarea></label><label>Fiyat (₺)<input id="productPrice" type="number" min="0" step="0.01" placeholder="Boş bırakılırsa fiyat için iletişim yazısı görünür"></label><label>Ürün görseli<input id="productImageFile" type="file" accept="image/png,image/jpeg,image/webp"></label><label>veya görsel bağlantısı<input id="productImageUrl" type="url" placeholder="https://..."></label><p class="form-error" id="productError" role="alert"></p><div class="modal-actions"><button class="modal-submit" type="submit">Kaydet</button><button class="modal-delete" id="deleteProductBtn" type="button" hidden>Ürünü Sil</button></div></form></section></div>\n<section class="contact-section" id="contact" aria-label="İletişim"><div class="contact-panel"><div><h2 class="owner">Serkan EKİCİ</h2><div class="owner-rule"></div></div>
 <div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span>H. Okan Merzeci Bulvarı<br>No:295 · Toroslar / MERSİN</span></div>
 <div class="contact-row"><span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 1-1 2-2 2C10 21 3 14 3 5c0-1 1-2 2-2Z"/></svg></span><a href="tel:+905313106333">0531 310 63 33</a></div></div></section>
 <footer class="footer">© <span id="year"></span> EKİCİ ET MANGAL · Afiyet olsun.</footer></div>
-<script>
-const products=[
-{n:'Adana Kebap',c:'cooked',d:'Zırhta çekilmiş et ve özel baharatlarla hazırlanır.',e:'🥩'},
-{n:'Urfa Kebap',c:'cooked',d:'Acısız, köz ateşinde usulüne uygun pişirilir.',e:'🍢'},
-{n:'Kuzu Şiş',c:'cooked',d:'Lokum kıvamında kuzu eti, mangalda pişirilir.',e:'🔥'},
-{n:'Dana Kuşbaşı',c:'raw',d:'Özenle doğranmış, pişirmeye hazır dana eti.',e:'🥩'},
-{n:'Kuzu Kuşbaşı',c:'raw',d:'Mangal ve tava için hazırlanmış kuzu eti.',e:'🍖'},
-{n:'Ayran',c:'drinks',d:'Soğuk servis edilir.',e:'🥛'},
-{n:'Şalgam',c:'drinks',d:'Acılı veya acısız seçenekleriyle.',e:'🥤'},
-{n:'Mevsim Salata',c:'extras',d:'Mevsim yeşillikleriyle günlük hazırlanır.',e:'🥗'}
-];
-const labels={cooked:'Pişmiş Ürünler',raw:'Çiğ Ürünler',drinks:'İçecekler',extras:'Ekstralar'};let active='all';
-function draw(){const q=document.getElementById('search').value.toLocaleLowerCase('tr');const list=products.filter(p=>(active==='all'||p.c===active)&&(p.n+' '+p.d).toLocaleLowerCase('tr').includes(q));document.getElementById('products').innerHTML=list.length?list.map(p=>'<article class="card"><div class="food" aria-hidden="true">'+p.e+'</div><div class="body"><small>'+labels[p.c]+'</small><h3>'+p.n+'</h3><p>'+p.d+'</p><div class="price">Fiyat bilgisi için iletişime geçin</div></div></article>').join(''):'<div class="empty">Bu kategoride eşleşen ürün bulunamadı.</div>'}
-document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-cat]');if(!b)return;active=b.dataset.cat;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('active',x===b));draw()});
-document.getElementById('search').addEventListener('input',draw);document.getElementById('year').textContent=new Date().getFullYear();draw();
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const SUPABASE_URL='https://vplqyuswgedvuopnlllv.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_AMNNu5wM3RzioaTnZ90z7g_bJFgZYFc';
+const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const labels={'Pişmiş Ürünler':'Pişmiş Ürünler','Çiğ Ürünler':'Çiğ Ürünler','İçecekler':'İçecekler','Ekstralar':'Ekstralar'};
+const emojis={'Adana Kebap':'🥩','Urfa Kebap':'🍢','Kuzu Şiş':'🔥','Dana Kuşbaşı':'🥩','Kuzu Kuşbaşı':'🍖','Ayran':'🥛','Şalgam':'🥤','Mevsim Salata':'🥗'};
+let products=[],active='all',isAdmin=false;
+const $=id=>document.getElementById(id);
+function showModal(id){$(id).hidden=false;document.body.style.overflow='hidden'}
+function hideModal(id){$(id).hidden=true;document.body.style.overflow=''}
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>hideModal(b.dataset.close)));
+document.querySelectorAll('.modal-backdrop').forEach(b=>b.addEventListener('click',e=>{if(e.target===b)hideModal(b.id)}));
+function setAdmin(on){isAdmin=on;$('adminToolbar').hidden=!on;$('adminLoginBtn').textContent=on?'YÖNETİCİ ✓':'YÖNETİCİ';draw()}
+function money(value){return new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',maximumFractionDigits:2}).format(value)}
+function draw(){
+ const q=$('search').value.toLocaleLowerCase('tr');
+ const list=products.filter(p=>(active==='all'||p.category===active)&&(p.name+' '+p.description).toLocaleLowerCase('tr').includes(q));
+ $('products').innerHTML=list.length?list.map(p=>{
+ const media=p.image_url?'<img src="'+escapeAttr(p.image_url)+'" alt="'+escapeAttr(p.name)+'" loading="lazy">':(emojis[p.name]||'🍽️');
+ const price=p.price!==null&&p.price!==''?money(p.price):'Fiyat bilgisi için iletişime geçin';
+ return '<article class="card"><div class="food">'+media+(isAdmin?'<button class="product-edit-btn" data-edit="'+p.id+'" type="button">Düzenle</button>':'')+'</div><div class="body"><small>'+escapeHtml(labels[p.category]||p.category)+'</small><h3>'+escapeHtml(p.name)+'</h3><p>'+escapeHtml(p.description||'')+'</p><div class="price">'+price+'</div></div></article>'
+ }).join(''):'<div class="empty">Bu kategoride eşleşen ürün bulunamadı.</div>';
+ document.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>openProduct(b.dataset.edit)));
+}
+function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function escapeAttr(s=''){return escapeHtml(s)}
+async function loadProducts(){
+ const {data,error}=await supabase.from('ekiciet_products').select('*').order('sort_order',{ascending:true}).order('created_at',{ascending:true});
+ if(error){$('products').innerHTML='<div class="empty">Menü şu anda yüklenemedi. Lütfen sayfayı yenileyin.</div>';console.error(error);return}
+ products=data||[];draw();
+}
+async function verifyAdmin(user){
+ if(!user){setAdmin(false);return false}
+ const {data,error}=await supabase.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();
+ if(error||!data){await supabase.auth.signOut();setAdmin(false);return false}
+ setAdmin(true);return true;
+}
+$('adminLoginBtn').addEventListener('click',async()=>{const {data:{session}}=await supabase.auth.getSession();if(session&&isAdmin){$('adminToolbar').scrollIntoView({behavior:'smooth'});return}showModal('loginModal')});
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('loginError').textContent='';
+ const {data,error}=await supabase.auth.signInWithPassword({email:$('loginEmail').value.trim(),password:$('loginPassword').value});
+ if(error){$('loginError').textContent='Giriş başarısız. E-posta ve şifreni kontrol et.';return}
+ if(!await verifyAdmin(data.user)){$('loginError').textContent='Bu hesap yönetici yetkisine sahip değil.';return}
+ hideModal('loginModal');
+});
+$('adminLogoutBtn').addEventListener('click',async()=>{await supabase.auth.signOut();setAdmin(false)});
+function openProduct(id){
+ const p=products.find(x=>x.id===id);
+ $('productModalTitle').textContent=p?'Ürünü Düzenle':'Yeni Ürün Ekle';
+ $('productId').value=p?.id||'';$('productName').value=p?.name||'';
+ $('productCategory').value=p?.category||'Pişmiş Ürünler';$('productDescription').value=p?.description||'';
+ $('productPrice').value=p?.price??'';$('productImageUrl').value=p?.image_url||'';
+ $('productImageFile').value='';$('productError').textContent='';$('deleteProductBtn').hidden=!p;
+ showModal('productModal');
+}
+$('addProductBtn').addEventListener('click',()=>openProduct(null));
+$('productForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('productError').textContent='';
+ const id=$('productId').value;
+ const payload={name:$('productName').value.trim(),category:$('productCategory').value,description:$('productDescription').value.trim(),price:$('productPrice').value===''?null:Number($('productPrice').value),image_url:$('productImageUrl').value.trim(),updated_at:new Date().toISOString()};
+ const file=$('productImageFile').files[0];
+ if(file){
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024){$('productError').textContent='JPG, PNG veya WEBP görsel seç; en fazla 5 MB.';return}
+  const path='ekiciet/'+crypto.randomUUID()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+  const {error:uploadError}=await supabase.storage.from('menu-images').upload(path,file,{contentType:file.type,upsert:false});
+  if(uploadError){$('productError').textContent='Görsel yüklenemedi: '+uploadError.message;return}
+  payload.image_url=supabase.storage.from('menu-images').getPublicUrl(path).data.publicUrl;
+ }
+ const result=id?await supabase.from('ekiciet_products').update(payload).eq('id',id):await supabase.from('ekiciet_products').insert(payload);
+ if(result.error){$('productError').textContent='Kaydedilemedi: '+result.error.message;return}
+ hideModal('productModal');await loadProducts();
+});
+$('deleteProductBtn').addEventListener('click',async()=>{
+ const id=$('productId').value;if(!id||!confirm('Bu ürünü menüden silmek istediğine emin misin?'))return;
+ const {error}=await supabase.from('ekiciet_products').delete().eq('id',id);
+ if(error){$('productError').textContent='Silinemedi: '+error.message;return}
+ hideModal('productModal');await loadProducts();
+});
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-cat]');if(!b)return;active=b.dataset.cat;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('active',x===b));draw()});
+$('search').addEventListener('input',draw);$('year').textContent=new Date().getFullYear();
+(async()=>{
+ const {data:{session}}=await supabase.auth.getSession();if(session)await verifyAdmin(session.user);
+ await loadProducts();
+ supabase.channel('ekiciet-menu-live').on('postgres_changes',{event:'*',schema:'public',table:'ekiciet_products'},()=>loadProducts()).subscribe();
+})();
 </script></body></html>
