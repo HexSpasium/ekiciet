@@ -137,7 +137,7 @@ body{background:#070910!important}
 @media(prefers-reduced-motion:reduce){.site:before,.site:after{animation:none!important}}
 
 
-/* Cinematic intro: deterministic seven-second scene sequence */
+/* Cinematic intro: ten-second particle logo sequence */
 #intro-screen{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;overflow:hidden;background:#05070c;opacity:1;visibility:visible;transition:opacity .8s ease,visibility .8s ease}
 #intro-screen.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
 #intro-screen:before,#intro-screen:after{content:"";position:absolute;inset:-40%;pointer-events:none}
@@ -150,12 +150,22 @@ body{background:#070910!important}
 .intro-orbit:before{left:15%;top:23%}.intro-orbit:after{right:12%;bottom:18%;background:#78e1ff;box-shadow:0 0 18px 4px #54cfff}
 .intro-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;padding:24px;opacity:0;visibility:hidden;transform:translateY(18px) scale(.98);filter:blur(8px);transition:opacity .55s ease,transform .65s cubic-bezier(.2,.75,.2,1),filter .55s ease,visibility .55s}
 .intro-scene.is-active{opacity:1;visibility:visible;transform:translateY(0) scale(1);filter:blur(0)}
-.intro-logo{display:block;width:min(76vw,570px);max-height:260px;height:auto;object-fit:contain;filter:drop-shadow(0 0 22px rgba(255,55,65,.72)) drop-shadow(0 0 48px rgba(65,197,255,.28))}
+.intro-logo{position:relative;z-index:2;display:block;width:min(76vw,570px);max-height:260px;height:auto;object-fit:contain;filter:drop-shadow(0 0 22px rgba(255,55,65,.72)) drop-shadow(0 0 48px rgba(65,197,255,.28));clip-path:inset(48% 48% 48% 48% round 50%);opacity:0;transform:scale(.68) rotate(-7deg);animation:logoParticleReveal 1.65s cubic-bezier(.16,.82,.22,1) .08s forwards}
+.intro-scene[data-intro-scene="logo"]{overflow:hidden}
+.intro-particles{position:absolute;z-index:1;width:min(92vw,720px);height:min(52vw,360px);pointer-events:none;opacity:0;background:
+ radial-gradient(circle,rgba(255,255,255,.98) 0 1.4px,transparent 2px) 8% 35%/17px 17px,
+ radial-gradient(circle,rgba(255,65,75,.95) 0 1.8px,transparent 2.5px) 21% 70%/23px 23px,
+ radial-gradient(circle,rgba(116,224,255,.95) 0 1.4px,transparent 2px) 73% 22%/19px 19px,
+ radial-gradient(circle,rgba(255,190,145,.9) 0 1.2px,transparent 2px) 90% 65%/21px 21px;
+ filter:drop-shadow(0 0 7px rgba(255,66,77,.8));}
+.intro-scene.is-active .intro-particles{animation:particleBurst 1.9s ease-out both}
 .intro-name{font:800 clamp(36px,7vw,76px)/1.05 'Playfair Display',Georgia,serif;letter-spacing:.025em;color:#fff;text-shadow:0 0 16px rgba(255,67,75,.8),0 0 42px rgba(255,45,55,.48)}
 .intro-slogan{font:800 clamp(30px,6vw,66px)/1.2 'Playfair Display',Georgia,serif;letter-spacing:.025em;color:#fff;text-shadow:0 0 16px rgba(255,67,75,.8),0 0 42px rgba(255,45,55,.48)}
 .intro-slogan span{color:#ff6268}
 .intro-rule{width:150px;height:2px;background:linear-gradient(90deg,transparent,#ff574d,#8be7ff,transparent);box-shadow:0 0 18px #ff3c49}
 .intro-caption{position:absolute;z-index:3;bottom:34px;left:0;right:0;font:600 10px 'DM Sans',sans-serif;letter-spacing:.42em;color:rgba(245,226,225,.62);text-transform:uppercase;text-align:center}
+@keyframes logoParticleReveal{0%{clip-path:inset(48% 48% 48% 48% round 50%);opacity:0;transform:scale(.68) rotate(-7deg);filter:blur(18px) brightness(2.4) drop-shadow(0 0 0 rgba(255,55,65,0))}38%{opacity:1;filter:blur(2px) brightness(1.7) drop-shadow(0 0 28px rgba(255,55,65,.95))}72%{clip-path:inset(0 0 0 0 round 8px);transform:scale(1.035) rotate(1deg);filter:blur(0) brightness(1.12) drop-shadow(0 0 25px rgba(255,55,65,.8)) drop-shadow(0 0 50px rgba(65,197,255,.35))}100%{clip-path:inset(0 0 0 0 round 8px);opacity:1;transform:scale(1) rotate(0);filter:blur(0) brightness(1) drop-shadow(0 0 22px rgba(255,55,65,.72)) drop-shadow(0 0 48px rgba(65,197,255,.28)}}
+@keyframes particleBurst{0%{opacity:0;transform:scale(.35) rotate(-12deg)}22%{opacity:1}75%{opacity:.8;transform:scale(1.35) rotate(9deg)}100%{opacity:0;transform:scale(1.8) rotate(16deg)}}
 @keyframes introLightDrift{from{transform:translate3d(-4%,1%,0) rotate(-4deg) scale(1)}to{transform:translate3d(4%,-2%,0) rotate(5deg) scale(1.08)}}
 @keyframes introSweep{0%{transform:translateX(-35%) rotate(-7deg)}100%{transform:translateX(35%) rotate(-7deg)}}
 @keyframes orbitTurn{to{transform:rotate(360deg)}}
@@ -167,7 +177,7 @@ body{background:#070910!important}
 <body><div id="intro-screen" aria-label="EKİCİ ET MANGAL açılış ekranı">
  <div class="intro-grain"></div><div class="intro-content">
   <div class="intro-orbit"></div>
-  <div class="intro-scene is-active" data-intro-scene="logo"><img class="intro-logo" src="https://raw.githubusercontent.com/HexSpasium/ekiciet/main/src/assets/ek%C4%B1c%C4%B1logo.png" alt="EKİCİ ET MANGAL logosu"><div class="intro-rule"></div></div>
+  <div class="intro-scene is-active" data-intro-scene="logo"><div class="intro-particles"></div><img class="intro-logo" src="https://raw.githubusercontent.com/HexSpasium/ekiciet/main/src/assets/ek%C4%B1c%C4%B1logo.png" alt="EKİCİ ET MANGAL logosu"><div class="intro-rule"></div></div>
   <div class="intro-scene" data-intro-scene="name"><div class="intro-name">Serkan EKİCİ</div><div class="intro-rule"></div></div>
   <div class="intro-scene" data-intro-scene="slogan"><div class="intro-slogan">LEZZETİN ADRESİ<br><span>USTALIĞIN ATEŞİ</span></div><div class="intro-rule"></div></div>
   <div class="intro-scene" data-intro-scene="name-final"><div class="intro-name">Serkan EKİCİ</div><div class="intro-rule"></div></div>
@@ -282,14 +292,14 @@ $('search').addEventListener('input',draw);$('year').textContent=new Date().getF
  const intro=document.getElementById('intro-screen');
  if(!intro)return;
  const scenes=[...intro.querySelectorAll('[data-intro-scene]')];
- const stages=[['logo',0],['name',1500],['slogan',3000],['name-final',5100]];
+ const stages=[['logo',0],['name',2200],['slogan',4300],['name-final',7100]];
  stages.forEach(([name,delay])=>setTimeout(()=>{
    scenes.forEach(scene=>scene.classList.toggle('is-active',scene.dataset.introScene===name));
  },delay));
  setTimeout(()=>{
    intro.classList.add('is-leaving');
    setTimeout(()=>intro.remove(),850);
- },7000);
+ },10000);
 })();
 </script>
 </body></html>
