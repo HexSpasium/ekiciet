@@ -1,26 +1,44 @@
 name: Deploy EKICI menu to GitHub Pages
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Install dependencies
+        run: npm install
+      - name: Build Vite app
+        run: npm run build
+      - name: Add no-Jekyll marker
+        run: touch dist/.nojekyll
+      - name: Verify build output
+        run: |
+          test -s dist/index.html
+          grep -q '/ekiciet/assets/' dist/index.html
+          find dist -maxdepth 2 -type f -print
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
   deploy:
@@ -30,6 +48,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify published page
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error "${{ steps.deployment.outputs.page_url }}" -o /tmp/published.html; then
+              grep -q '/ekiciet/assets/' /tmp/published.html && exit 0
+            fi
+            sleep 10
+          done
+          echo 'Published page did not return the expected Vite entry HTML.'
+          exit 1
