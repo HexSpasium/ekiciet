@@ -86,7 +86,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL='https://vplqyuswgedvuopnlllv.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_AMNNu5wM3RzioaTnZ90z7g_bJFgZYFc';
 const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-const labels={'Pişmiş Ürünler':'Pişmiş Ürünler','Çiğ Ürünler':'Çiğ Ürünler','İçecekler':'İçecekler','Ekstralar':'Ekstralar'};
+const labels={'Pişmiş Ürünler':'Pişmiş Ürünler','Çiğ Ürünler':'Çiğ Ürünler','İçecekler':'İçecekler','Ekstralar':'Ekstralar'};\nconst categoryMap={cooked:'Pişmiş Ürünler',raw:'Çiğ Ürünler',drinks:'İçecekler',extras:'Ekstralar'};
 const emojis={'Adana Kebap':'🥩','Urfa Kebap':'🍢','Kuzu Şiş':'🔥','Dana Kuşbaşı':'🥩','Kuzu Kuşbaşı':'🍖','Ayran':'🥛','Şalgam':'🥤','Mevsim Salata':'🥗'};
 let products=[],active='all',isAdmin=false;
 const $=id=>document.getElementById(id);
@@ -98,7 +98,7 @@ function setAdmin(on){isAdmin=on;$('adminToolbar').hidden=!on;$('adminLoginBtn')
 function money(value){return new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',maximumFractionDigits:2}).format(value)}
 function draw(){
  const q=$('search').value.toLocaleLowerCase('tr');
- const list=products.filter(p=>(active==='all'||p.category===active)&&(p.name+' '+p.description).toLocaleLowerCase('tr').includes(q));
+ const list=products.filter(p=>(active==='all'||p.category===categoryMap[active])&&(p.name+' '+p.description).toLocaleLowerCase('tr').includes(q));
  $('products').innerHTML=list.length?list.map(p=>{
  const media=p.image_url?'<img src="'+escapeAttr(p.image_url)+'" alt="'+escapeAttr(p.name)+'" loading="lazy">':(emojis[p.name]||'🍽️');
  const price=p.price!==null&&p.price!==''?money(p.price):'Fiyat bilgisi için iletişime geçin';
