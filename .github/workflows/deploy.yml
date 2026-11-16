@@ -37,6 +37,8 @@ jobs:
       - name: Verify build output
         run: |
           test -s dist/index.html
+          test -s dist/ekici-loading-logo.png
+          file dist/ekici-loading-logo.png
           grep -q 'EKİCİ ET MANGAL' dist/index.html
           find dist -maxdepth 2 -type f -print
       - name: Upload Pages artifact
@@ -57,7 +59,7 @@ jobs:
         run: |
           for attempt in 1 2 3 4 5 6; do
             if curl --fail --silent --show-error "${{ steps.deployment.outputs.page_url }}" -o /tmp/published.html; then
-              grep -q 'EKİCİ ET MANGAL' /tmp/published.html && exit 0
+              grep -q 'EKİCİ ET MANGAL' /tmp/published.html && curl --fail --silent --show-error "${{ steps.deployment.outputs.page_url }}ekici-loading-logo.png" -o /tmp/loading-logo.png && test -s /tmp/loading-logo.png && exit 0
             fi
             sleep 10
           done
