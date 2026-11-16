@@ -149,13 +149,13 @@ body{background:#070910!important}
 #intro-screen:after{background:linear-gradient(115deg,transparent 0 43%,rgba(255,255,255,.05) 46%,rgba(255,49,58,.24) 48%,transparent 52%);animation:introSweep 3.6s linear infinite}
 .intro-grain{position:absolute;inset:0;opacity:.13;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.7) .6px,transparent .7px);background-size:5px 5px;mask-image:linear-gradient(transparent,#000 20% 80%,transparent)}
 .intro-content{position:relative;z-index:2;width:min(90vw,720px);min-height:470px;display:grid;place-items:center;text-align:center;padding:45px 24px}
-.intro-logo-wrap{position:absolute;inset:0;display:grid;place-items:center;animation:brandReveal 1.25s cubic-bezier(.2,.75,.2,1) both}
+.intro-logo-wrap{position:absolute;inset:0;display:grid;place-items:center;animation:introLogoSequence 7s ease both}
 .intro-logo{width:min(62vw,330px);max-height:260px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(255,55,65,.62)) drop-shadow(0 0 38px rgba(65,197,255,.22))}
 .intro-copy{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);font:800 clamp(28px,5.8vw,54px)/1.1 'Playfair Display',Georgia,serif;letter-spacing:.02em;color:#fff;text-shadow:0 0 14px rgba(255,67,75,.75),0 0 34px rgba(255,45,55,.38);opacity:0}
 .intro-copy:after{content:"";display:block;width:110px;height:2px;margin:18px auto 0;background:linear-gradient(90deg,transparent,#ff574d,#8be7ff,transparent);box-shadow:0 0 15px #ff3c49}
-.intro-copy.name-one{animation:introNameOne 1.55s ease both}
-.intro-copy.slogan{animation:introSlogan 1.75s ease both}
-.intro-copy.name-two{animation:introNameTwo 1.65s ease both}
+.intro-copy.name-one{animation:introNameOne 7s ease both}
+.intro-copy.slogan{animation:introSlogan 7s ease both}
+.intro-copy.name-two{animation:introNameTwo 7s ease both}
 .intro-caption{position:absolute;bottom:38px;left:0;right:0;font:600 10px 'DM Sans',sans-serif;letter-spacing:.42em;color:rgba(245,226,225,.57);text-transform:uppercase;opacity:0;animation:introCaption 1s 0.35s ease forwards}
 .intro-orbit{position:absolute;width:min(75vw,470px);aspect-ratio:1;border:1px solid rgba(255,95,100,.17);border-radius:50%;box-shadow:0 0 0 20px rgba(255,255,255,.012),0 0 0 55px rgba(85,210,255,.018),inset 0 0 35px rgba(255,55,65,.06);animation:orbitTurn 18s linear infinite}
 .intro-orbit:before,.intro-orbit:after{content:"";position:absolute;border-radius:50%;width:8px;height:8px;background:#ff535b;box-shadow:0 0 18px 4px #ff3c49}
@@ -163,10 +163,11 @@ body{background:#070910!important}
 @keyframes introLightDrift{from{transform:translate3d(-4%,1%,0) rotate(-4deg) scale(1)}to{transform:translate3d(4%,-2%,0) rotate(5deg) scale(1.08)}}
 @keyframes introSweep{0%{transform:translateX(-35%) rotate(-7deg)}100%{transform:translateX(35%) rotate(-7deg)}}
 @keyframes brandReveal{0%{opacity:0;transform:scale(.72) rotate(-5deg);filter:blur(12px)}65%{opacity:1;transform:scale(1.04) rotate(1deg);filter:blur(0)}100%{opacity:1;transform:scale(1);filter:blur(0)}}
-@keyframes introNameOne{0%,12%{opacity:0;transform:translateY(25px) translateY(-50%);filter:blur(8px)}30%,78%{opacity:1;transform:translateY(0) translateY(-50%);filter:blur(0)}100%{opacity:0;transform:translateY(-15px) translateY(-50%);filter:blur(7px)}}
-@keyframes introSlogan{0%,10%{opacity:0;transform:translateY(28px) translateY(-50%);filter:blur(9px)}30%,78%{opacity:1;transform:translateY(0) translateY(-50%);filter:blur(0)}100%{opacity:0;transform:translateY(-15px) translateY(-50%);filter:blur(8px)}}
-@keyframes introNameTwo{0%,12%{opacity:0;transform:translateY(25px) translateY(-50%);filter:blur(9px)}34%,78%{opacity:1;transform:translateY(0) translateY(-50%);filter:blur(0)}100%{opacity:0;transform:translateY(-15px) translateY(-50%);filter:blur(8px)}}
-@keyframes introCaption{to{opacity:1}}
+@keyframes introLogoSequence{0%,17%{opacity:1;transform:scale(1);filter:blur(0)}23%,100%{opacity:0;transform:scale(1.12);filter:blur(12px)}}
+@keyframes introNameOne{0%,22%{opacity:0;transform:translateY(25px) translateY(-50%);filter:blur(8px)}27%,39%{opacity:1;transform:translateY(0) translateY(-50%);filter:blur(0)}45%,100%{opacity:0;transform:translateY(-15px) translateY(-50%);filter:blur(8px)}}
+@keyframes introSlogan{0%,43%{opacity:0;transform:translateY(28px) translateY(-50%);filter:blur(9px)}49%,69%{opacity:1;transform:translateY(0) translateY(-50%);filter:blur(0)}76%,100%{opacity:0;transform:translateY(-15px) translateY(-50%);filter:blur(8px)}}
+@keyframes introNameTwo{0%,73%{opacity:0;transform:translateY(25px) translateY(-50%);filter:blur(9px)}79%,94%{opacity:1;transform:translateY(0) translateY(-50%);filter:blur(0)}100%{opacity:0;transform:translateY(-15px) translateY(-50%);filter:blur(8px)}}
+@keyframes introCaption{to{opacity:1}}{to{opacity:1}}
 @keyframes orbitTurn{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){#intro-screen:before,#intro-screen:after,.intro-orbit{animation:none!important}.intro-logo-wrap{animation:none!important}}
 @media(max-width:620px){.intro-content{min-height:390px}.intro-logo{width:min(72vw,280px)}.intro-caption{font-size:8px;letter-spacing:.27em;bottom:28px}}
@@ -176,7 +177,7 @@ body{background:#070910!important}
 <body><div id="intro-screen" aria-label="EKİCİ ET MANGAL açılış ekranı">
  <div class="intro-grain"></div><div class="intro-content">
   <div class="intro-orbit"></div>
-  <div class="intro-logo-wrap"><img class="intro-logo" src="/ekiciet/src/assets/ek%C4%B1c%C4%B1logo.png" alt="EKİCİ ET MANGAL logosu"></div>
+  <div class="intro-logo-wrap"><img class="intro-logo" src="/ekiciet/ekici-loading-logo.png" alt="EKİCİ ET MANGAL logosu"></div>
   <div class="intro-copy name-one">Serkan EKİCİ</div>
   <div class="intro-copy slogan">LEZZETİN ADRESİ<br>USTALIĞIN ATEŞİ</div>
   <div class="intro-copy name-two">Serkan EKİCİ</div>
@@ -290,10 +291,7 @@ $('search').addEventListener('input',draw);$('year').textContent=new Date().getF
 (function(){
  const intro=document.getElementById('intro-screen');
  if(!intro)return;
- const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const start=performance.now();
  function reveal(){intro.classList.add('is-leaving');setTimeout(()=>intro.remove(),900)}
- if(reduce){setTimeout(reveal,1800);return}
  setTimeout(reveal,7000);
 })();
 </script>
