@@ -172,6 +172,18 @@ body{background:#070910!important}
 @media(max-width:620px){.intro-logo{width:86vw;max-height:190px}.intro-orbit{width:88vw}.intro-caption{font-size:8px;letter-spacing:.25em;bottom:25px}.intro-slogan{font-size:clamp(27px,8vw,44px)}}
 @media(prefers-reduced-motion:reduce){#intro-screen:before,#intro-screen:after,.intro-orbit{animation:none!important}.intro-scene{transition:none}}
 
+
+/* Hero redesign: typography only, no white panel or duplicate logo */
+.hero-wrap{max-width:1440px;margin:36px auto 0;padding:0 3vw}
+.hero{display:block;min-height:0;height:auto;border:0!important;border-radius:0!important;overflow:visible;background:transparent!important;box-shadow:none!important;grid-template-columns:1fr}
+.hero:before,.hero:after{display:none!important;content:none!important}
+.hero-left{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:0;padding:clamp(36px,6vw,76px) clamp(22px,5vw,70px);background:transparent!important;color:#fff;overflow:visible}
+.hero-left:before,.hero-left:after{display:none!important;content:none!important}
+.hero-left h1{font:800 clamp(38px,5.4vw,76px)/1.06 'Playfair Display',Georgia,serif;letter-spacing:-1.5px;margin:0 0 18px;color:#fff;position:relative;z-index:1;text-shadow:0 5px 26px rgba(0,0,0,.42)}
+.hero-left h1 span{color:#ff4b50}
+.hero-left p{font:italic 600 clamp(18px,2.1vw,27px)/1.4 'Playfair Display',Georgia,serif;margin:0;max-width:720px;color:rgba(255,245,242,.86);position:relative;z-index:1}
+@media(max-width:620px){.hero-wrap{margin-top:20px;padding:0 8px}.hero-left{padding:42px 18px 48px}.hero-left h1{font-size:clamp(34px,9vw,48px);letter-spacing:-.8px}.hero-left p{font-size:18px}}
+
 </style>
 </head>
 <body><div id="intro-screen" aria-label="EKİCİ ET MANGAL açılış ekranı">
@@ -186,7 +198,7 @@ body{background:#070910!important}
 </div><div class="site">
 <header class="header"><a class="brand" href="#top"><span class="brand-symbol">e</span><span>EKİCİ ET MANGAL</span></a><div class="header-right"><a href="#menu">MENÜ</a><a class="header-cta" href="#contact">İLETİŞİM</a><button class="admin-login-btn" id="adminLoginBtn" type="button">YÖNETİCİ</button></div></header>
 <div id="top" class="hero-wrap"><section class="hero">
-<div class="hero-left"><div class="brand-plaque"><span class="plaque-e">e</span> EKİCİ ET MANGAL</div><h1>LEZZETİN ADRESİ<br><span>USTALIĞIN</span> ATEŞİ</h1><p>Adaklık ve Kurbanlık Satışı ve Kesimi Yapılır.</p><div class="red-rule"></div></div>
+<div class="hero-left"><h1>LEZZETİN ADRESİ<br><span>USTALIĞIN</span> ATEŞİ</h1><p>Adaklık ve Kurbanlık Satışı ve Kesimi Yapılır.</p></div>
 
 </section></div>
 <main id="menu" class="menu-section"><div class="section-title"><div class="eyebrow">LEZZETLERİMİZİ KEŞFEDİN</div><h2>DİJİTAL <em>MENÜ</em></h2><p>Ürünlerimizi kategorilere göre inceleyebilirsiniz.</p></div>
