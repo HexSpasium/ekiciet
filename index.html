@@ -174,89 +174,47 @@ body{background:#070910!important}
 
 
 
-/* Clean, single-source hero styling — no conflicting legacy overrides */
+
+/* Hero typography intentionally matches the Digital Menu heading and subtitle */
 .site > #top.hero-copy{
- display:block;
- width:min(1140px,calc(100% - 290px));
- max-width:1140px;
- margin:28px auto 12px;
- padding:28px 0 18px;
- background:transparent;
- border:0;
- border-radius:0;
- box-shadow:none;
- outline:0;
- text-align:left;
+ display:block;width:min(1140px,calc(100% - 290px));max-width:1140px;
+ margin:28px auto 12px;padding:28px 0 18px;
+ background:transparent;border:0;border-radius:0;box-shadow:none;outline:0;text-align:left;
 }
 .site > #top.hero-copy h1{
- display:block;
- margin:0 0 16px;
- padding:0;
- color:#fff;
- font-family:'Playfair Display',Georgia,serif;
- font-size:clamp(48px,5vw,72px);
- font-weight:800;
- line-height:1.05;
- letter-spacing:-1.3px;
- text-shadow:0 5px 25px rgba(0,0,0,.48);
- white-space:normal;
- overflow-wrap:normal;
- word-break:normal;
+ display:block;margin:8px 0 7px;padding:0;
+ font:800 clamp(35px,4.5vw,52px)/1.12 'Playfair Display',Georgia,serif;
+ color:#fff;letter-spacing:0;text-shadow:none;
+ white-space:normal;overflow-wrap:normal;word-break:normal;
 }
-.site > #top.hero-copy h1 span{color:#ff4b50}
+.site > #top.hero-copy h1 span{color:#e63a31}
 .site > #top.hero-copy p{
- display:block;
- max-width:760px;
- margin:0;
- padding:0;
- color:rgba(255,245,242,.92);
- font-family:'Playfair Display',Georgia,serif;
- font-size:clamp(19px,1.9vw,25px);
- font-style:italic;
- font-weight:600;
- line-height:1.45;
- letter-spacing:0;
+ display:block;max-width:760px;margin:0;padding:0;
+ color:#b9aaa4;font:400 14px/1.5 'DM Sans',sans-serif;
+ font-style:normal;letter-spacing:0;
 }
 .site > #top.hero-copy::before,.site > #top.hero-copy::after{content:none;display:none}
 @media(max-width:900px){
  .site > #top.hero-copy{width:90%;margin:24px auto 8px;padding:22px 0 14px}
 }
 @media(max-width:620px){
- .site .header{height:auto;min-height:64px;padding:8px 12px;gap:8px}
- .site .brand{gap:8px;min-width:0}
- .site .brand-symbol{width:38px;height:38px;min-width:38px;font-size:25px}
- .site .brand>span:last-child{font-size:12px;line-height:1.05;max-width:94px}
- .site .header-right{gap:6px;font-size:10px}
- .site .header-right>a:first-child{font-size:10px}
- .site .header-cta{padding:7px 8px;font-size:10px}
- .site .admin-login-btn{padding:8px 9px;font-size:9px;white-space:nowrap}
  .site > #top.hero-copy{
-  width:calc(100% - 36px);max-width:none;
-  margin:24px 18px 8px;padding:18px 0 12px;
-  box-sizing:border-box;text-align:left;
+  width:calc(100% - 36px);max-width:none;margin:24px 18px 8px;
+  padding:18px 0 12px;box-sizing:border-box;text-align:left;
  }
  .site > #top.hero-copy h1{
-  width:100%;max-width:none;
-  margin:0 0 12px;padding:0;
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(25px,7.4vw,30px);
-  font-weight:800;line-height:1.16;letter-spacing:-.4px;
+  width:100%;max-width:none;margin:8px 0 7px;padding:0;
+  font:800 clamp(28px,8vw,36px)/1.14 'Playfair Display',Georgia,serif;
+  letter-spacing:0;
  }
  .site > #top.hero-copy p{
-  width:100%;max-width:100%;
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:15px;font-style:italic;font-weight:600;
-  line-height:1.5;letter-spacing:0;
+  width:100%;max-width:100%;margin:0;
+  font:400 12px/1.5 'DM Sans',sans-serif;color:#b9aaa4;
  }
  .site > #menu.menu-section{padding-top:24px}
 }
 @media(max-width:370px){
- .site > #top.hero-copy h1{font-size:25px;letter-spacing:-.5px}
- .site > #top.hero-copy p{font-size:14px}
- .site .brand>span:last-child{font-size:11px;max-width:80px}
- .site .header-right{gap:4px}
- .site .header-cta{padding:6px 7px}
- .site .admin-login-btn{padding:7px 7px;font-size:8px}
+ .site > #top.hero-copy h1{font-size:28px}
 }
 
 </style>
