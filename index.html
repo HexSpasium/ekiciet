@@ -277,13 +277,65 @@ body .site > #menu.menu-section{padding-top:34px!important}
  body .site > #menu.menu-section{padding-top:28px!important}
 }
 
+
+/* Responsive hero repair: remove narrow inline box and keep natural line lengths */
+body .site > #top.hero-copy{
+ width:min(1440px,calc(100% - 290px))!important;
+ max-width:1440px!important;
+ margin:26px auto 0!important;
+ padding:24px 0 12px!important;
+ background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+body .site > #top.hero-copy h1{
+ max-width:100%!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;
+ font-family:'Playfair Display',Georgia,serif!important;
+}
+body .site > #top.hero-copy p{
+ max-width:100%!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;
+}
+@media(max-width:620px){
+ .site .header{height:auto!important;min-height:64px!important;padding:8px 12px!important;gap:8px!important}
+ .site .brand{gap:8px!important;flex:0 1 auto!important;min-width:0!important}
+ .site .brand-symbol{width:38px!important;height:38px!important;min-width:38px!important;font-size:25px!important}
+ .site .brand>span:last-child{font-size:12px!important;line-height:1.05!important;max-width:94px!important}
+ .site .header-right{gap:6px!important;flex:0 0 auto!important;font-size:10px!important}
+ .site .header-right>a:first-child{font-size:10px!important}
+ .site .header-cta{padding:7px 8px!important;font-size:10px!important}
+ .site .admin-login-btn{padding:8px 9px!important;font-size:9px!important;white-space:nowrap!important}
+ body .site > #top.hero-copy{
+  display:block!important;width:calc(100% - 36px)!important;max-width:none!important;
+  margin:24px 18px 0!important;padding:20px 0 14px!important;
+  box-sizing:border-box!important;
+ }
+ body .site > #top.hero-copy h1{
+  width:100%!important;max-width:100%!important;
+  font-size:clamp(32px,8.4vw,39px)!important;
+  line-height:1.12!important;letter-spacing:-.7px!important;
+  margin:0 0 14px!important;
+ }
+ body .site > #top.hero-copy p{
+  width:100%!important;max-width:100%!important;
+  font-family:'DM Sans',Arial,sans-serif!important;
+  font-size:15px!important;font-style:normal!important;font-weight:400!important;
+  line-height:1.55!important;letter-spacing:0!important;
+ }
+ body .site > #menu.menu-section{padding-top:22px!important}
+}
+@media(max-width:370px){
+ .site .brand>span:last-child{font-size:11px!important;max-width:80px!important}
+ .site .header-right{gap:4px!important}
+ .site .header-cta{padding:6px 7px!important}
+ .site .admin-login-btn{padding:7px 7px!important;font-size:8px!important}
+ body .site > #top.hero-copy h1{font-size:31px!important}
+}
+
 </style>
 </head>
 <body><div class="site">
 <header class="header"><a class="brand" href="#top"><span class="brand-symbol">e</span><span>EKİCİ ET MANGAL</span></a><div class="header-right"><a href="#menu">MENÜ</a><a class="header-cta" href="#contact">İLETİŞİM</a><button class="admin-login-btn" id="adminLoginBtn" type="button">YÖNETİCİ</button></div></header>
-<section id="top" class="hero-copy" style="display:block!important;width:min(1440px,calc(100% - 290px))!important;max-width:1440px!important;margin:26px auto 0!important;padding:24px 0 12px!important;background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;outline:0!important;position:relative!important">
-<h1 style="display:block!important;margin:0 0 14px!important;padding:0!important;background:transparent!important;border:0!important;font-family:'Playfair Display',Georgia,serif!important;font-size:clamp(48px,5vw,74px)!important;font-weight:800!important;line-height:1.04!important;letter-spacing:-1.5px!important;color:#fff!important;text-shadow:0 5px 25px rgba(0,0,0,.5)!important">LEZZETİN ADRESİ<br><span style="color:#ff4b50!important">USTALIĞIN</span> ATEŞİ</h1>
-<p style="margin:0!important;padding:0!important;background:transparent!important;border:0!important;font-family:'Playfair Display',Georgia,serif!important;font-size:clamp(19px,1.9vw,25px)!important;font-style:italic!important;font-weight:600!important;line-height:1.4!important;color:rgba(255,245,242,.92)!important;text-shadow:0 3px 14px rgba(0,0,0,.45)!important">Adaklık ve Kurbanlık Satışı ve Kesimi Yapılır.</p></section>
+<section id="top" class="hero-copy">
+<h1>LEZZETİN ADRESİ<br><span>USTALIĞIN</span> ATEŞİ</h1>
+<p>Adaklık ve Kurbanlık Satışı ve Kesimi Yapılır.</p></section>
 <main id="menu" class="menu-section"><div class="section-title"><div class="eyebrow">LEZZETLERİMİZİ KEŞFEDİN</div><h2>DİJİTAL <em>MENÜ</em></h2><p>Ürünlerimizi kategorilere göre inceleyebilirsiniz.</p></div>
 <div class="admin-toolbar" id="adminToolbar" hidden><span>Yönetici modu açık · Değişiklikler anında yayınlanır</span><button id="addProductBtn" type="button">+ Ürün Ekle</button><button id="adminLogoutBtn" type="button">Çıkış</button></div><div class="toolbar"><div class="tabs" id="tabs"><button class="active" data-cat="all">Tümü</button><button data-cat="cooked">Pişmiş Ürünler</button><button data-cat="raw">Çiğ Ürünler</button><button data-cat="drinks">İçecekler</button><button data-cat="extras">Ekstralar</button></div><input class="search" id="search" placeholder="Menüde ara..." aria-label="Menüde ara"></div>
 <div class="grid" id="products"></div></main>
